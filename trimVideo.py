@@ -25,7 +25,15 @@ for files in os.listdir(data):
       pass
     for s,e in zip(start,end):
       print(s,e)
-      clip = video.subclip(s,e)
+      s = s.split(':')
+      smin = int(s[0])
+      ssec = int(s[1])
+      stosec = smin*60+ssec
+      e = e.split(':')
+      emin = int(e[0])
+      esec = int(e[1])
+      etosec = emin*60+esec
+      clip = video.subclip(stosec,etosec)
       clip.write_videofile(subclipdatasetpath+ files[:-4]+'/'+files[:-3]+str(i)+'.mp4')      
       print(subclipdatasetpath+ files[:-4]+'/'+files[:-3]+str(i)+'.mp4')
       i = i + 1
